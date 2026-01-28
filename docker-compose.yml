@@ -1,0 +1,41 @@
+services:
+    postgres:
+        image: postgis/postgis:18-3.6
+        container_name: expert_listing_postgres
+        env_file:
+            - .env.docker
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql
+        healthcheck:
+            test:
+                ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER?Variable not set}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            - expert_listing_network
+
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: expert_listing_backend
+        env_file:
+            - .env.docker
+        ports:
+            - "8000:8000"
+        depends_on:
+            postgres:
+                condition: service_healthy
+        networks:
+            - expert_listing_network
+        restart: unless-stopped
+
+volumes:
+    postgres_data:
+
+networks:
+    expert_listing_network:
+        driver: bridge

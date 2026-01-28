@@ -15,7 +15,7 @@ patch.dict(
     os.environ,
     {
         "ENVIRONMENT": "staging",
-        "APP_RUN_SEEDS": "true",
+        "APP_RUN_SEEDS": "false",
         "POSTGRES_DB": f"expert_listing_test_{os.environ.get('PYTEST_XDIST_WORKER', 'master')}",
     },
 ).start()  # noqa

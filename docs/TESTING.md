@@ -14,13 +14,7 @@ Running tests in Docker ensures a consistent environment and isolates test execu
 
 ### Setup
 
-1. **Start the services:**
-
-   ```bash
-   docker compose up
-   ```
-
-2. **Run tests:**
+1. **Run tests:**
 
    ```bash
    make test

@@ -7,7 +7,9 @@ This guide will help you set up and run the Expert Listing application for local
 - Python 3.14+
 - PostgreSQL 18+ with PostGIS extension
 - [uv](https://docs.astral.sh/uv/) package manager
-- Docker and Docker Compose (optional, for containerized development)
+- Docker and Docker Compose ( for containerized development)
+
+**NOTE**: Seeds to the database are run via an environment variable `APP_RUN_SEEDS` and by default it is set to be True
 
 ## Docker Development Setup
 
